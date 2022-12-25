@@ -3,18 +3,55 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_package"
-description = "My package description"
+name = "temperature_package"
+version = "1.0"
+description = "Package for plotting cities annual temperature"
 readme = "README.md"
-requires-python = ">=3.7"
-keywords = ["one", "two"]
-license = {text = "BSD 3-Clause License"}
-classifiers = [
-    "Framework :: Django",
-    "Programming Language :: Python :: 3",
-]
+requires-python = ">=3.8"
 dependencies = [
-    "requests",
-    'importlib-metadata; python_version<"3.8"',
+    "pandas",
+    "matplotlib",
 ]
-dynamic = ["version"]
+
+[tool.setuptools]
+packages = ["temperature_package"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+
+[tool.isort]
+profile = "black"
+src_paths = ["tempertaure_package", "tests"]
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+exclude = '''
+/(
+    \.git
+    \.gitignore
+  | \.pytest_cache
+  | \.mypy_cache
+  | build
+  | dist
+  | data
+  | figures
+  | /*\.egg-info/
+)/
+'''
+
+[tool.mypy]
+python_version = "3.8"
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = false
+follow_imports = "normal"
+ignore_missing_imports = true
+warn_no_return = true
+warn_unused_ignores = true
+exclude = ['build']
