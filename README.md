@@ -14,6 +14,8 @@ python -m temperature_package.main ./data/GlobalLandTemperaturesByMajorCity.csv 
 
 `2001` — конечный год для учета информации (-1, чтобы учитывать до наиболее позднего года)
 
+Опциональные аргументы:
+
 ```shell
 --city CITY
 ```
