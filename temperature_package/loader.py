@@ -1,18 +1,16 @@
-import zipfile
 from pathlib import Path
 
 import pandas as pd
 
 
 def load_dataframe(
-    zip_path: Path, start_year: int = -1, end_year: int = -1
+    csv_path: Path, start_year: int = -1, end_year: int = -1
 ) -> pd.DataFrame:
     if end_year != -1:
         assert end_year >= start_year
 
-    with zipfile.ZipFile(zip_path) as z:
-        with z.open("GlobalLandTemperaturesByMajorCity.csv") as f:
-            df = pd.read_csv(f, parse_dates=["dt"])
+    df = pd.read_csv(csv_path, parse_dates=["dt"])
+
     if start_year != -1:
         df = df[df.dt.dt.year >= start_year]
     if end_year != -1:

@@ -6,13 +6,13 @@ from .loader import get_city_mean_annual_temperature, load_dataframe
 
 
 def main(arguments: argparse.Namespace) -> None:
-    zip_path = arguments.zip_path
+    csv_path = arguments.csv_path
     start_year = arguments.start_year
     end_year = arguments.end_year
     city = arguments.city
     savefig_path = arguments.savefig_path
 
-    df = load_dataframe(zip_path, start_year, end_year)
+    df = load_dataframe(csv_path, start_year, end_year)
 
     city_avgtemp_series = get_city_mean_annual_temperature(df, city)
 
@@ -28,9 +28,10 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "zip_path",
+        "csv_path",
         type=Path,
-        help="Путь к zip-архиву, содержащему .csv таблицы",
+        default="./data/GlobalLandTemperaturesByMajorCity.csv",
+        help="Путь к csv файлу",
     )
     parser.add_argument(
         "start_year",

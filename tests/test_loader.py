@@ -8,7 +8,11 @@ from temperature_package.loader import load_dataframe
 
 @pytest.fixture
 def get_df(start_year: int, end_year: int) -> pd.DataFrame:
-    return load_dataframe(Path("./data/archive.zip"), start_year, end_year)
+    return load_dataframe(
+        Path("./data/GlobalLandTemperaturesByMajorCity.csv"),
+        start_year,
+        end_year,
+    )
 
 
 @pytest.mark.parametrize(
